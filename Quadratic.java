@@ -3,6 +3,7 @@
 public class Quadratic extends HashTable{
 	int size;
 	static int numberofCollision =0 ; 
+	static String resize = null;
 	
 	public Quadratic(int n) {
 		super(n);
@@ -58,7 +59,17 @@ public class Quadratic extends HashTable{
 		
 		System.out.println("Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size);
 		System.out.println("Probed: " + probes);
-		size++; 
+		size++;
+		
+		if (size >= table.length/2 ) {
+			MyLinkedList table2[] = new MyLinkedList [table.length*table.length]; 
+			
+			for (int m=0 ; m < table2.length ; m++) {
+				table[m] = table[m]; 
+			}
+			table = table2;
+		}
+			
 		return temp1; 
 	}
 
