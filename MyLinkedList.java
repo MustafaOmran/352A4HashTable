@@ -30,7 +30,7 @@ public class MyLinkedList  {
 	private class Node  {
 		Node before; 
 		Node after;
-		map element; 
+		Map element; 
 
 		/**
 		 *  constructor that initialize the variables 
@@ -48,7 +48,7 @@ public class MyLinkedList  {
 		 * @param element the element
 		 */
 
-		Node(Node after, Node before, map element) {
+		Node(Node after, Node before, Map element) {
 			this.before = before; 
 			this.after = after;
 			this.element = element; 
@@ -60,7 +60,7 @@ public class MyLinkedList  {
 		 * @param e generic element
 		 */
 
-		void setElement(map e) {
+		void setElement(Map e) {
 			element =  e; 
 		}
 
@@ -68,7 +68,7 @@ public class MyLinkedList  {
 		 * return the element 
 		 * @return element
 		 */
-		map getElement () {
+		Map getElement () {
 			return element; 
 		}
 		
@@ -137,7 +137,7 @@ public class MyLinkedList  {
 	}
 
 	
-	public String findseparate(map e, String method) {
+	public String findseparate(Map e, String method) {
 		Node postion = head; 
 		String temp = null; 
 		while (postion != null) {
@@ -174,7 +174,7 @@ public class MyLinkedList  {
 	 * @param object e 
 	 * @return true if the element is added 
 	 */
-	public boolean add(map e) {
+	public boolean add(Map e) {
 		Node temp = new Node(null,null, e);  
 		if (head == null) {
 			head=tail=temp;
@@ -199,14 +199,14 @@ public class MyLinkedList  {
 	
 	/**
 	 * add an element based on index 
-	 * @param map index 
+	 * @param Map index 
 	 * @param Object element
 	 */
 
-	public void add(int index, map element) {
+	public void add(int index, Map element) {
 
 		if (index > size+1 ) {
-			throw new indexGreaterThan(); 
+			throw new IndexGreaterThan(); 
 		}
 
 		Node postion = head; 
@@ -320,7 +320,7 @@ public class MyLinkedList  {
 
 
 	/**
-	 * returns boolean if the list is empty 
+	 * returns boolean if the list is Empty 
 	 * @return true if head is null
 	 */
 	public boolean isEmpty() {
@@ -365,11 +365,11 @@ public class MyLinkedList  {
 	 * @return true if object is removed 
 	 * 
 	 */
-	public boolean remove1(map o) {
+	public boolean remove1(Map o) {
 		Node temp = new Node(null, null, o); 
 		boolean removed = false; 
 		if (isEmpty()) {
-			throw new empty(); 
+			throw new Empty(); 
 		}
 		else {
 			
@@ -416,11 +416,11 @@ public class MyLinkedList  {
 	public Node remove(int index) {
 		Node removed = null; 
 		if (isEmpty()) {
-			throw new empty(); 
+			throw new Empty(); 
 		}
 
 		if (index>size-1) {
-			throw new indexGreaterThan(); 
+			throw new IndexGreaterThan(); 
 		}
 		else {
 			if (index==0) {

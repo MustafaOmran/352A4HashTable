@@ -1,9 +1,9 @@
 
-public class linearProb extends hashtable{
+public class Linear extends HashTable{
 	int size;
-	static int numberofCollision =0 ; 
+	static int numberofCollision =0;
 	
-	public linearProb(int n) {
+	public Linear(int n) {
 		super(n);
 		size = 0; 
 	}
@@ -17,8 +17,9 @@ public class linearProb extends hashtable{
 	}
 	
 	public String get(int k) {
+		int input = 0; 
 		String temp1 = null; 
-		for (int i =hasCode(k, table.length); table[i] != null ; i ++) {
+		for (int i =hasCode(k, table.length); table[i] != null  && input != table.length; i ++) {
 			if (table[i].getnodeKey() == k) {
 			temp1 = table[i].getnodeValue(); 
 			break; 
@@ -26,13 +27,14 @@ public class linearProb extends hashtable{
 			if ( (i+1) == table.length) {
 				i = -1;
 			}
+			input++; 
 		}
 		return temp1; 
 	}
 
 	public String put(int k, String value) {
 		int probes = 0;
-		map temp = new map (k, value); 
+		Map temp = new Map (k, value); 
 		String temp1 = null; 
 		int i =hasCode(k, table.length);
 		for (; table[i] != null && table[i].getnodeKey() != -2 ; i ++) {
@@ -61,7 +63,7 @@ public class linearProb extends hashtable{
 	@Override
 	public String remove(int k) {
 		
-		map temp = new map (-2, "available"); 
+		Map temp = new Map (-2, "available"); 
 		String temp1 = null; 
 		int i =hasCode(k, table.length);
 		for (; table[i] != null ; i ++) {

@@ -1,21 +1,21 @@
 import java.util.Random;
 
-public class map {
+public class Map {
 	int key; 
 	String value; 
 	Random ran = new Random(); 
 	
-	public map (int k, String input) {
+	public Map (int k, String input) {
 		key = k; 
 		value = input;
 	}
 	
-	public map (String input) {
+	public Map (String input) {
 		key = ran.nextInt(); 
 		value = input;
 	}
 	
-	public map () {
+	public Map () {
 		key =0; 
 		value = null; 
 	}
@@ -40,7 +40,7 @@ public class map {
 		this.value = value;
 	}
 	
-	public boolean equals (map o) {
+	public boolean equals (Map o) {
 		return key == o.getKey();
 	}
 

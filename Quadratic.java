@@ -1,6 +1,6 @@
 
 
-public class Quadratic extends hashtable{
+public class Quadratic extends HashTable{
 	int size;
 	static int numberofCollision =0 ; 
 	
@@ -34,7 +34,7 @@ public class Quadratic extends hashtable{
 
 	public String put(int k, String value) {
 		int probes = 0;
-		map temp = new map (k, value); 
+		Map temp = new Map (k, value); 
 		String temp1 = null; 
 		int input = 0; 
 		int i =hasCode(k, table.length);
@@ -65,7 +65,7 @@ public class Quadratic extends hashtable{
 	@Override
 	public String remove(int k) {
 		
-		map temp = new map (-2, "available"); 
+		Map temp = new Map (-2, "available"); 
 		String temp1 = null; 
 		int input = 0; 
 		int i =hasCode(k, table.length);

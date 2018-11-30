@@ -1,5 +1,5 @@
 
-public class Separate extends hashtable {
+public class Separate extends HashTable {
 	int size; 
 	
 	public Separate (int n) {
@@ -17,14 +17,14 @@ public class Separate extends hashtable {
 	
 	public String get(int k) {
 		
-		map temp = new map (k,null); 
+		Map temp = new Map (k,null); 
 		String temp1 = null; 
 		temp1 = table[hasCode(k, table.length)].findseparate(temp,"get");
 		return temp1; 
 	}
 
 	public String put(int k, String value) {
-		map temp = new map (k, value); 
+		Map temp = new Map (k, value); 
 		String temp1 = null; 
 		
 		temp1 = table[temp.hasCode(k, table.length)].findseparate(temp,"put");
@@ -36,7 +36,7 @@ public class Separate extends hashtable {
 
 	@Override
 	public String remove(int k) {
-		map temp = new map(); 
+		Map temp = new Map(); 
 		String temp1 = null; 
 		temp1 = table[temp.hasCode(k, table.length)].findseparate(temp,"put");
 		size--; 

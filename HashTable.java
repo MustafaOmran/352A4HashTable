@@ -1,8 +1,8 @@
 
-public abstract class hashtable extends map {
+public abstract class HashTable extends Map {
 	MyLinkedList table[]; 
 	
-	public hashtable (int n) {
+	public HashTable (int n) {
 		table =new MyLinkedList [n]; 
 	}
 	

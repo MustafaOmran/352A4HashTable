@@ -3,8 +3,8 @@
  * @author Mustafa Omran-26745954 Muherthan Thalayasingam -27223064
  *
  */
-public class indexGreaterThan extends RuntimeException {
-	indexGreaterThan () { 
+public class IndexGreaterThan extends RuntimeException {
+	IndexGreaterThan () { 
 		super("Enter another value that is less than the size ") ; 
 	}
 
