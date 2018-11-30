@@ -1,9 +1,14 @@
 
 public class linearProb extends hashtable{
-	int size; 
+	int size;
+	static int numberofCollision =0 ; 
 	public linearProb(int n) {
 		super(n);
 		size = 0; 
+	}
+	
+	public int size() {
+		return size;
 	}
 
 	public boolean isEmpty() {
@@ -15,6 +20,7 @@ public class linearProb extends hashtable{
 		for (int i =hasCode(k, table.length); table[i] != null ; i ++) {
 			if (table[i].getnodeKey() == k) {
 			temp1 = table[i].getnodeValue(); 
+			break; 
 			}
 			if ( (i+1) == table.length) {
 				i = -1;
@@ -27,15 +33,19 @@ public class linearProb extends hashtable{
 		map temp = new map (k, value); 
 		String temp1 = null; 
 		int i =hasCode(k, table.length);
-		for (i =hasCode(k, table.length); table[i] != null ; i ++) {
+		for (; table[i] != null ; i ++) {
 			if (table[i].getnodeKey() == k) {
-				temp1 = table[i].findseparate(temp, "remove");
-				}
+				temp1 = table[i].findseparate(temp, "put");
+				break; 
+			}
+			else if (table[i].getnodeValue().equals("available")) {
+				table[i].findseparate(temp, "put");
+			}
 			if ( (i+1) == table.length) {
 				i = -1;
 			}
+			numberofCollision++; 
 		}
-		table[i].add(temp) ;
 		System.out.println("Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size);
 		
 		size++; 
@@ -45,12 +55,12 @@ public class linearProb extends hashtable{
 	@Override
 	public String remove(int k) {
 		
-		map temp = new map (k, value); 
+		map temp = new map (-2, "available"); 
 		String temp1 = null; 
 		int i =hasCode(k, table.length);
-		for (i =hasCode(k, table.length); table[i] != null ; i ++) {
+		for (; table[i] != null ; i ++) {
 			if (table[i].getnodeKey() == k) {
-				temp1 = table[i].findseparate(temp, "remove");
+				temp1 = table[i].findseparate(temp, "put");
 				}
 			if ( (i+1) == table.length) {
 				i = -1;

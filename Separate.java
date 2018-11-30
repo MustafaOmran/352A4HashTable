@@ -11,6 +11,10 @@ public class Separate extends hashtable {
 		return size == 0; 
 	}
 	
+	public int size() {
+		return size;
+	}
+	
 	public String get(int k) {
 		
 		map temp = new map (k,null); 

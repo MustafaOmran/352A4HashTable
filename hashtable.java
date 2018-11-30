@@ -13,4 +13,6 @@ public abstract class hashtable extends map {
 	public abstract String put(int k, String value);
 
 	public abstract String remove(int k); 
+	
+	public abstract int size();
 }
