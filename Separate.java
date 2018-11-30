@@ -28,10 +28,8 @@ public class Separate extends HashTable {
 		String temp1 = null; 
 		table[temp.hashCode(Math.abs(k), table.length)] = new MyLinkedList();
 		temp1 = table[temp.hashCode(Math.abs(k), table.length)].findseparate(temp,"put");
-		String extra = "Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + (size + 1);
-		
 		size++; 
-		return extra; 
+		return "Value retrived =  "+temp1 +"\tthe size of table is " + size +".   number of elements = " + size + "\t Collisions: " + MyLinkedList.numberofCollision;
 	}
 
 	@Override

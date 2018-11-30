@@ -57,8 +57,6 @@ public class Linear extends HashTable{
 			temp1 = table[temp.hashCode(Math.abs(k), table.length)].findseparate(temp,"put");
 		}
 		
-		String extra = "Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + (size +1) +
-				"\nProbed: " + probes;
 		size++; 
 		if (size >= table.length/2  &&resize != null ) {
 			MyLinkedList table2[] = new MyLinkedList [table.length*table.length]; 
@@ -68,7 +66,8 @@ public class Linear extends HashTable{
 			}
 			table = table2; 
 		}
-		return extra; 
+		return "Value retrived =  "+temp1 +"\tthe size of table is " + table.length +",  number of elements = " + (size +1) +
+				"   Probed: " + probes; 
 	}
 
 	@Override
@@ -79,6 +78,7 @@ public class Linear extends HashTable{
 		int i =hashCode(Math.abs(k), table.length);
 		for (; table[i] != null ; i ++) {
 			if (table[i].getnodeKey() == k || table[i].getnodeKey() == -2 ) {
+				// I dont think we should be putting the temp value here, the key is -2..
 				temp1 = table[i].findseparate(temp, "put");
 				break; 
 				}
