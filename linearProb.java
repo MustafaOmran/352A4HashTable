@@ -30,6 +30,7 @@ public class linearProb extends hashtable{
 	}
 
 	public String put(int k, String value) {
+		int probes = 0;
 		map temp = new map (k, value); 
 		String temp1 = null; 
 		int i =hasCode(k, table.length);
@@ -45,6 +46,7 @@ public class linearProb extends hashtable{
 				i = -1;
 			}
 			numberofCollision++; 
+			probes++;
 		}
 		
 		if (temp1 == null) {
@@ -52,7 +54,7 @@ public class linearProb extends hashtable{
 		}
 		
 		System.out.println("Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size);
-		
+		System.out.println("Probed: " + probes);
 		size++; 
 		return temp1; 
 	}
