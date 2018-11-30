@@ -33,7 +33,7 @@ public class linearProb extends hashtable{
 		map temp = new map (k, value); 
 		String temp1 = null; 
 		int i =hasCode(k, table.length);
-		for (; table[i] != null ; i ++) {
+		for (; table[i] != null && table[i].getnodeKey() != -2 ; i ++) {
 			if (table[i].getnodeKey() == k) {
 				temp1 = table[i].findseparate(temp, "put");
 				break; 
@@ -46,6 +46,11 @@ public class linearProb extends hashtable{
 			}
 			numberofCollision++; 
 		}
+		
+		if (temp1 == null) {
+			table[i].findseparate(temp, "put");
+		}
+		
 		System.out.println("Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size);
 		
 		size++; 

@@ -13,6 +13,7 @@ public class MyLinkedList  {
 	private Node head; 
 	private Node tail;
 	private int size;
+	public static int numberofCollision =0; 
 
 	/** 
 	 * Constructor that initialize all attributes 
@@ -135,6 +136,7 @@ public class MyLinkedList  {
 		return head.getElement().getValue(); 
 	}
 
+	
 	public String findseparate(map e, String method) {
 		Node postion = head; 
 		String temp = null; 
@@ -151,8 +153,10 @@ public class MyLinkedList  {
 			if (postion == null) 
 				head = postion = new Node(null,null,e); 
 			
-			else 
+			else {
+				numberofCollision++; 
 				postion.setElement(e);
+			}
 			return temp; 
 		}
 		else if (method.equals("get"))
