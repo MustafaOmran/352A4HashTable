@@ -1,9 +1,10 @@
 
-public class linearProb extends hashtable{
+
+public class Quadratic extends hashtable{
 	int size;
 	static int numberofCollision =0 ; 
 	
-	public linearProb(int n) {
+	public Quadratic(int n) {
 		super(n);
 		size = 0; 
 	}
@@ -18,14 +19,15 @@ public class linearProb extends hashtable{
 	
 	public String get(int k) {
 		String temp1 = null; 
-		for (int i =hasCode(k, table.length); table[i] != null ; i ++) {
+		int i =hasCode(k, table.length);
+		int input = 0; 
+		while (table[i] != null && input != table.length) {
 			if (table[i].getnodeKey() == k) {
 			temp1 = table[i].getnodeValue(); 
 			break; 
 			}
-			if ( (i+1) == table.length) {
-				i = -1;
-			}
+			i = hasCode((k+i*i), table.length); 
+			input++; 
 		}
 		return temp1; 
 	}
@@ -34,16 +36,18 @@ public class linearProb extends hashtable{
 		int probes = 0;
 		map temp = new map (k, value); 
 		String temp1 = null; 
+		int input = 0; 
 		int i =hasCode(k, table.length);
-		for (; table[i] != null && table[i].getnodeKey() != -2 ; i ++) {
+		while (table[i] != null &&  table[i].getnodeKey() != -2 &&  input != table.length ) {
 			if (table[i].getnodeKey() == k) {
 				temp1 = table[i].findseparate(temp, "put");
+				i = hasCode((k+i*i), table.length);
 				break; 
 			}
 			
-			if ( (i+1) == table.length) {
-				i = -1;
-			}
+			i = hasCode((k+i*i), table.length); 
+			input++;
+
 			numberofCollision++; 
 			probes++;
 		}
@@ -63,15 +67,15 @@ public class linearProb extends hashtable{
 		
 		map temp = new map (-2, "available"); 
 		String temp1 = null; 
+		int input = 0; 
 		int i =hasCode(k, table.length);
-		for (; table[i] != null ; i ++) {
-			if (table[i].getnodeKey() == k || table[i].getnodeKey() == -2 ) {
+		while (table[i] != null &&  table[i].getnodeKey() != -2 &&  input != table.length ) {
+			if (table[i].getnodeKey() == k) {
 				temp1 = table[i].findseparate(temp, "put");
-				break; 
+				break;
 				}
-			if ( (i+1) == table.length) {
-				i = -1;
-			}
+			i = hasCode((k+i*i), table.length); 
+			input++;
 		}
 		System.out.println("Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size);
 		size--; 
