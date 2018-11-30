@@ -4,7 +4,7 @@ public class Separate extends HashTable {
 	
 	public Separate (int n) {
 		super(n);
-		size =0; 
+		size = 0; 
 	}
 	
 	public boolean isEmpty() {
@@ -19,26 +19,26 @@ public class Separate extends HashTable {
 		
 		Map temp = new Map (k,null); 
 		String temp1 = null; 
-		temp1 = table[hasCode(k, table.length)].findseparate(temp,"get");
+		temp1 = table[hashCode(Math.abs(k), table.length)].findseparate(temp,"get");
 		return temp1; 
 	}
 
 	public String put(int k, String value) {
 		Map temp = new Map (k, value); 
 		String temp1 = null; 
-		
-		temp1 = table[temp.hasCode(k, table.length)].findseparate(temp,"put");
-		System.out.println("Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size);
+		table[temp.hashCode(Math.abs(k), table.length)] = new MyLinkedList();
+		temp1 = table[temp.hashCode(Math.abs(k), table.length)].findseparate(temp,"put");
+		String extra = "Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + (size + 1);
 		
 		size++; 
-		return temp1; 
+		return extra; 
 	}
 
 	@Override
 	public String remove(int k) {
 		Map temp = new Map(); 
 		String temp1 = null; 
-		temp1 = table[temp.hasCode(k, table.length)].findseparate(temp,"put");
+		temp1 = table[temp.hashCode(Math.abs(k), table.length)].findseparate(temp,"put");
 		size--; 
 		return temp1;
 	}

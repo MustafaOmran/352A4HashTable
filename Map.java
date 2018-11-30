@@ -20,7 +20,7 @@ public class Map {
 		value = null; 
 	}
 	
-	public int hasCode(int k, int q) { 
+	public int hashCode(int k, int q) { 
 		return k % q; 
 	}
 
