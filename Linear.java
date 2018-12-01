@@ -39,17 +39,17 @@ public class Linear extends HashTable{
 		String temp1 = null; 
 		
 		int i = temp.hashCode(Math.abs(k), table.length);
-		table[temp.hashCode(Math.abs(k), table.length)] = new MyLinkedList();
+		
+		if (table[temp.hashCode(Math.abs(k), table.length)]  == null)
+			table[temp.hashCode(Math.abs(k), table.length)] = new MyLinkedList();
 		
 		for (; table[i] != null && table[i].getnodeKey() != -2 ; i ++) {
 			if (table[i].getnodeKey() == k) {
 				temp1 = table[i].findseparate(temp, "put");
+				
 				break; 
 			}
-			
-			if ( (i+1) == table.length) {
-				i = -1;
-			}
+			i = hashCode(i, table.length);
 			numberofCollision++; 
 			probes++;
 		}
@@ -73,21 +73,21 @@ public class Linear extends HashTable{
 	@Override
 	public String remove(int k) {
 		
-		Map temp = new Map (-2, "available"); 
+		Map temp = new Map (k, "available"); 
+		
 		String temp1 = null; 
 		int i =hashCode(Math.abs(k), table.length);
 		for (; table[i] != null ; i ++) {
-			if (table[i].getnodeKey() == k || table[i].getnodeKey() == -2 ) {
-				// I dont think we should be putting the temp value here, the key is -2..
+			if (table[i].getnodeKey() == k) {
 				temp1 = table[i].findseparate(temp, "put");
+
 				break; 
 				}
-			if ( (i+1) == table.length) {
-				i = -1;
-			}
+			i = hashCode(i, table.length);
 		}
 		String extra = "Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size;
-		size--; 
+		if (temp != null)
+			size--; 
 		return extra;
 	}
 

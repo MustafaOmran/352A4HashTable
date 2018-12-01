@@ -122,7 +122,7 @@ public class MyLinkedList  {
 		 * a to string method for the class 
 		 */
 		public String toString() {
-			return element+" "; 
+			return element.getValue()+" "; 
 		}
 
 
@@ -133,11 +133,13 @@ public class MyLinkedList  {
 		if (head != null)
 			return head.getElement().getKey(); 
 		else
-			// might need to change this value
-			return -3;
+			return -2;
 	}
 	
 	public String getnodeValue() {
+		if (head == null) {
+			return null; 
+		}
 		return head.getElement().getValue(); 
 	}
 
@@ -147,21 +149,27 @@ public class MyLinkedList  {
 		String temp = null; 
 		while (postion != null) {
 			if (e.getKey() == postion.getElement().getKey()) {
+				if (method.equals("put")) {
+					numberofCollision++; 
+				}
 				temp = postion.getElement().getValue();
 				
 				break; 
 			}
-			
 			postion = postion.getNext(); 
 		}
+		
+
+		
 		if (method.equals("put")) {
-			if (postion == null) 
+			if (postion == null) {
 				head = postion = new Node(null,null,e); 
+				return temp;
+			}
 			else {
-				numberofCollision++; 
 				postion.setElement(e);
 			}
-			return temp = e.getValue(); 
+			return temp;
 		}
 		else if (method.equals("get"))
 			return temp; 

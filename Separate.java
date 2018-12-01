@@ -34,10 +34,12 @@ public class Separate extends HashTable {
 
 	@Override
 	public String remove(int k) {
-		Map temp = new Map(); 
+		Map temp = new Map(k,null); 
 		String temp1 = null; 
 		temp1 = table[temp.hashCode(Math.abs(k), table.length)].findseparate(temp,"put");
-		size--; 
+		
+		if (temp != null)
+			size--; 
 		return temp1;
 	}
 	
