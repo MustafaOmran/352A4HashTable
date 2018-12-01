@@ -3,7 +3,7 @@ public abstract class HashTable extends Map {
 	MyLinkedList table[]; 
 	
 	public HashTable (int n) {
-		table =new MyLinkedList [n]; 
+		table = new MyLinkedList [n];
 	}
 	
 	public abstract boolean isEmpty() ;

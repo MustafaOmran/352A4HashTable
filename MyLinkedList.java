@@ -129,7 +129,12 @@ public class MyLinkedList  {
 	}
 	
 	public int getnodeKey() {
-		return head.getElement().getKey(); 
+		// changed this for the linear for loop to actually work
+		if (head != null)
+			return head.getElement().getKey(); 
+		else
+			// might need to change this value
+			return -3;
 	}
 	
 	public String getnodeValue() {
@@ -152,12 +157,11 @@ public class MyLinkedList  {
 		if (method.equals("put")) {
 			if (postion == null) 
 				head = postion = new Node(null,null,e); 
-			
 			else {
 				numberofCollision++; 
 				postion.setElement(e);
 			}
-			return temp; 
+			return temp = e.getValue(); 
 		}
 		else if (method.equals("get"))
 			return temp; 

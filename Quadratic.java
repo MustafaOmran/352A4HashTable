@@ -20,14 +20,14 @@ public class Quadratic extends HashTable{
 	
 	public String get(int k) {
 		String temp1 = null; 
-		int i =hasCode(k, table.length);
+		int i =hashCode(Math.abs(k), table.length);
 		int input = 0; 
 		while (table[i] != null && input != table.length) {
 			if (table[i].getnodeKey() == k) {
 			temp1 = table[i].getnodeValue(); 
 			break; 
 			}
-			i = hasCode((k+i*i), table.length); 
+			i = hashCode((k+i*i), table.length); 
 			input++; 
 		}
 		return temp1; 
@@ -38,15 +38,17 @@ public class Quadratic extends HashTable{
 		Map temp = new Map (k, value); 
 		String temp1 = null; 
 		int input = 0; 
-		int i =hasCode(k, table.length);
+		int i = hashCode(Math.abs(k), table.length);
+		table[temp.hashCode(Math.abs(k), table.length)] = new MyLinkedList();
+		
 		while (table[i] != null &&  table[i].getnodeKey() != -2 &&  input != table.length ) {
 			if (table[i].getnodeKey() == k) {
 				temp1 = table[i].findseparate(temp, "put");
-				i = hasCode((k+i*i), table.length);
+				i = hashCode((k+i*i), table.length);
 				break; 
 			}
 			
-			i = hasCode((k+i*i), table.length); 
+			i = hashCode((k+i*i), table.length); 
 			input++;
 
 			numberofCollision++; 
@@ -54,11 +56,11 @@ public class Quadratic extends HashTable{
 		}
 		
 		if (temp1 == null) {
-			table[i].findseparate(temp, "put");
+			temp1 = table[temp.hashCode(Math.abs(k), table.length)].findseparate(temp,"put");
 		}
 		
-		System.out.println("Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size);
-		System.out.println("Probed: " + probes);
+		String extra = "Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size + 
+				"\nProbed: " + probes;
 		size++;
 		
 		if (size >= table.length/2 ) {
@@ -70,7 +72,7 @@ public class Quadratic extends HashTable{
 			table = table2;
 		}
 			
-		return temp1; 
+		return extra; 
 	}
 
 	@Override
@@ -79,13 +81,13 @@ public class Quadratic extends HashTable{
 		Map temp = new Map (-2, "available"); 
 		String temp1 = null; 
 		int input = 0; 
-		int i =hasCode(k, table.length);
+		int i =hashCode(k, table.length);
 		while (table[i] != null &&  table[i].getnodeKey() != -2 &&  input != table.length ) {
 			if (table[i].getnodeKey() == k) {
 				temp1 = table[i].findseparate(temp, "put");
 				break;
 				}
-			i = hasCode((k+i*i), table.length); 
+			i = hashCode((k+i*i), table.length); 
 			input++;
 		}
 		System.out.println("Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size);
