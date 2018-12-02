@@ -154,6 +154,7 @@ public class MyLinkedList  {
 				}
 				temp = postion.getElement().getValue();
 				
+				
 				break; 
 			}
 			postion = postion.getNext(); 
@@ -167,6 +168,7 @@ public class MyLinkedList  {
 				return temp;
 			}
 			else {
+				size++; 
 				postion.setElement(e);
 			}
 			return temp;
@@ -174,7 +176,7 @@ public class MyLinkedList  {
 		else if (method.equals("get"))
 			return temp; 
 		else {
-			remove1(e); 
+			remove1(e);
 			return temp;
 			
 		}

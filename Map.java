@@ -11,7 +11,7 @@ public class Map {
 	}
 	
 	public Map (String input) {
-		key = ran.nextInt(50)+0; 
+		key = ran.nextInt(); 
 		value = input;
 	}
 	

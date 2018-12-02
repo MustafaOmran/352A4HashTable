@@ -7,6 +7,9 @@ public class Linear extends HashTable{
 	public Linear(int n) {
 		super(n);
 		size = 0; 
+		
+		for (int i=0 ; i < table.length ; i++ ) 
+			table[i] = new MyLinkedList();
 	}
 	
 	public int size() {
@@ -40,55 +43,60 @@ public class Linear extends HashTable{
 		
 		int i = temp.hashCode(Math.abs(k), table.length);
 		
-		if (table[temp.hashCode(Math.abs(k), table.length)]  == null)
-			table[temp.hashCode(Math.abs(k), table.length)] = new MyLinkedList();
-		
-		for (; table[i] != null && table[i].getnodeKey() != -2 ; i ++) {
+		int input =0;
+		for (; table[i] != null && table[i].getnodeValue() != "available" && input != table.length ; i ++) {
+			
+
 			if (table[i].getnodeKey() == k) {
 				temp1 = table[i].findseparate(temp, "put");
-				
 				break; 
 			}
-			i = hashCode(i, table.length);
+			if ((i+1) == table.length) {
+				i = -1;
+			}
 			numberofCollision++; 
 			probes++;
+			input++;
 		}
 		if (temp1 == null) {
 			temp1 = table[temp.hashCode(Math.abs(k), table.length)].findseparate(temp,"put");
+			size++; 
 		}
 		
-		size++; 
-		if (size >= table.length/2  &&resize != null ) {
-			MyLinkedList table2[] = new MyLinkedList [table.length*table.length]; 
+		if (size >= table.length/2 ) {
+			MyLinkedList table2[] = new MyLinkedList [table.length*2]; 
 			
-			for (int m=0 ; m< table2.length ; m++) {
-				table[m] = table[m]; 
+			for (int m=0 ; m< table.length ; m++) {
+				table2[m] = table[m]; 
 			}
-			table = table2; 
+			
+			for (int m=table.length; m <table2.length; m++ ) {
+				table2[m] = new MyLinkedList(); 
+			}
+			table = table2;
 		}
-		return "Value retrived =  "+temp1 +"\tthe size of table is " + table.length +",  number of elements = " + (size +1) +
+		
+		return "The size of table is " + table.length +",  number of elements = " + size +
 				"   Probed: " + probes; 
 	}
 
 	@Override
 	public String remove(int k) {
-		
 		Map temp = new Map (k, "available"); 
-		
 		String temp1 = null; 
 		int i =hashCode(Math.abs(k), table.length);
 		for (; table[i] != null ; i ++) {
-			if (table[i].getnodeKey() == k) {
+			if (table[i].getnodeKey() == k || table[i].getnodeValue() == "available" ) {
 				temp1 = table[i].findseparate(temp, "put");
-
 				break; 
 				}
-			i = hashCode(i, table.length);
+			if ((i+1) == table.length) {
+				i = -1;
+			}
 		}
-		String extra = "Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size;
-		if (temp != null)
+		if (temp1 == null)
 			size--; 
-		return extra;
+		return temp1;
 	}
 
 }

@@ -30,7 +30,7 @@ public class Quadratic extends HashTable{
 			temp1 = table[i].getnodeValue(); 
 			break; 
 			}
-			i = hashCode((k+i*i), table.length); 
+			i = hashCode((1+i*i), table.length); 
 			input++; 
 		}
 		return temp1; 
@@ -43,11 +43,10 @@ public class Quadratic extends HashTable{
 		int input = 0; 
 		int i = hashCode(Math.abs(k), table.length);
 		
-		
 		while (table[i].getnodeKey() !=  -2  &&  input != table.length ) {
 			if (table[i].getnodeKey() == k || table[i].getnodeValue() == "available" ) {
 				temp1 = table[i].findseparate(temp, "put");
-				i = hashCode((k+i*i), table.length);
+				i = hashCode((1+i*i), table.length);
 				break; 
 			}
 			
@@ -61,25 +60,29 @@ public class Quadratic extends HashTable{
 			temp1 = table[temp.hashCode(Math.abs(k), table.length)].findseparate(temp,"put");
 		}
 		
-		String extra = "Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size + 
-				"\nProbed: " + probes;
-		size++;
+		if (temp1 == null)
+			size++;
 		
 		if (size >= table.length/2 ) {
-			MyLinkedList table2[] = new MyLinkedList [table.length*table.length]; 
+			MyLinkedList table2[] = new MyLinkedList [table.length*2]; 
 			
-			for (int m=0 ; m < table.length ; m++) {
+			for (int m=0 ; m< table.length ; m++) {
 				table2[m] = table[m]; 
+			}
+			
+			for (int m=table.length; m <table2.length; m++ ) {
+				table2[m] = new MyLinkedList(); 
 			}
 			table = table2;
 		}
 			
-		return extra; 
+		return "The size of table is " + table.length +",  number of elements = " + size + 
+				"   Probed: " + probes;
 	}
 
 	@Override
 	public String remove(int k) {
-		
+		k = Math.abs(k);
 		Map temp = new Map (k, "available"); 
 		String temp1 = null; 
 		int input = 0; 
@@ -92,14 +95,13 @@ public class Quadratic extends HashTable{
 			i = hashCode((1+i*i), table.length); 
 			input++;
 		}
-		if (temp1.equals("available")) {
+		if (temp1 != null && temp1.equals("available")) {
 			temp1 = null;
 		}
-		String output = ("Value retrived =  "+temp1 +", the size of table is " + table.length +",  number of elements = " + size);
 		
 		if (temp != null)
 			size--; 
-		return output;
+		return temp1;
 	}
 
 }

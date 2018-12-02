@@ -25,13 +25,15 @@ public class Driver {
 				print.println("\nGet: ");
 				for (int i = 0; i < keys.length; i++) {
 					startTime = System.currentTimeMillis();
-					print.println("Value gotten: " + h1.get(keys[i].getKey()) + " -- Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
+					h1.get(keys[i].getKey());
+					print.println("Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
 				}
 				
 				print.println("\nRemoved: ");
 				for (int i = 0; i < 25; i++) {
 					startTime = System.currentTimeMillis();
-					print.println("Value removed: " + h1.remove(keys[i].getKey()) + "\tTime elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
+					h1.remove(keys[i].getKey());
+					print.println("Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
 				}
 				print.close();
 			}	else if (resolution == 2) {
@@ -51,13 +53,14 @@ public class Driver {
 				print.println("\nGet: ");
 				for (int i = 0; i < keys.length; i++) {
 					startTime = System.currentTimeMillis();
-					print.println(h2.get(keys[i].getKey()) + "Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
+					h2.get(keys[i].getKey());
+					print.println("Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
 				}
 				
 				print.println("\nRemoved: ");
 				for (int i = 0; i < 25; i++) {
 					startTime = System.currentTimeMillis();
-					print.println(h2.remove(keys[i].getKey()));
+					h2.remove(keys[i].getKey());
 					print.println("Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
 				}
 				print.close();
@@ -74,28 +77,23 @@ public class Driver {
 					keys[i] = pair;
 					startTime = System.currentTimeMillis();
 					print.println(h3.put(pair.getKey(), pair.getValue()) + ". Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
-					print.println("Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
 				}
 				
 				print.println("\nGet: ");
 				for (int i = 0; i < keys.length; i++) {
 					startTime = System.currentTimeMillis();
-					print.println(h3.get(keys[i].getKey()));
+					h3.get(keys[i].getKey());
 					print.println("Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
 				}
 				
 				print.println("\nRemoved: ");
 				for (int i = 0; i < 25; i++) {
 					startTime = System.currentTimeMillis();
-					print.println(h3.remove(keys[i].getKey()));
+					h3.remove(keys[i].getKey());
 					print.println("Time elapsed: " + Long.toString(System.currentTimeMillis() - startTime) + "  milliseconds.");
 				}
 				print.close();
 			}
 		}
-		
-		
-		
-		
 	}
 }
